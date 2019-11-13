@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'EatFresh'
+    'EatFresh',
 ]
 
 MIDDLEWARE = [
@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'EatFresh_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'produce',
-        'USER': 'produceuser',
-        'PASSWORD': 'produce',
+        'NAME': 'eatfresh',
+        'USER': 'eatfreshuser',
+        'PASSWORD': 'eatfresh',
         'HOST': 'localhost'
     }
 }
