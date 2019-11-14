@@ -117,6 +117,8 @@ CORS_ORIGIN_WHITELIST = [
     "https://localhost:8000",
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
