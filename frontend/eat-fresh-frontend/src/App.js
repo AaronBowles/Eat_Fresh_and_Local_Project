@@ -9,7 +9,24 @@ class App extends Component {
     this.state = {
       region: "",
       season: ""
-    }
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <nav>
+          <Link to="/">Home</Link>
+        </nav>
+
+        <main>
+          <Switch>
+            
+          </Switch>
+        </main>
+      </div>
+
+    )
   }
 }
 
