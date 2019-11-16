@@ -15,3 +15,5 @@ class ShowPage extends Compoent {
   }
 
 }
+
+export default ShowPage

@@ -21,7 +21,8 @@ class App extends Component {
 
         <main>
           <Switch>
-            
+            <Route path="/" component={Home} />
+            <Route path="/show" component={ShowPage} />
           </Switch>
         </main>
       </div>
