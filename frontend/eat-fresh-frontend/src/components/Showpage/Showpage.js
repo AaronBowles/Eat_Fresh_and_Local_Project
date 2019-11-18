@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
-
-class ShowPage extends Compoent {
+class ShowPage extends Component {
   constructor(props) {
     super(props);
   }
@@ -13,7 +12,5 @@ class ShowPage extends Compoent {
           </div>
       )
   }
-
 }
-
 export default ShowPage

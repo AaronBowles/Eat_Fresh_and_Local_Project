@@ -2,15 +2,26 @@ import React, { Component } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-
+import Home from "./components/Home/Home";
+import ShowPage from "./components/ShowPage/ShowPage";
+import Axios from 'axios';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       region: "",
-      season: ""
+      season: "",
+      produce:""
     };
   }
+
+ componentDidMount() {
+   Axios.get('http://localhost:8000/produces')
+   .then(res => {
+     console.log(res.data);
+    this.setState({produce: res.data});
+   });
+ };
 
   render() {
     return (
@@ -18,7 +29,6 @@ class App extends Component {
         <nav>
           <Link to="/">Home</Link>
         </nav>
-
         <main>
           <Switch>
             <Route path="/" component={Home} />
@@ -26,9 +36,7 @@ class App extends Component {
           </Switch>
         </main>
       </div>
-
     )
   }
 }
-
 export default App;
