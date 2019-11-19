@@ -33,11 +33,27 @@ class Home extends Component {
     //         }
     //     }
     // }
+    let inSeasonList = null;
+    if(this.props.produceInSeason !== null){
+         inSeasonList = this.props.produceInSeason.map(item => {
+            console.log(item)
+            return (
+                <div className="produceList">
+                    <h3>Name: {item.name}</h3>
+                    <h4>Category: {item.category}</h4>
+                    <h4>Description:</h4><p>{item.description}</p>
+                </div>
+            )
+        })
+    }
+    
     
       return (
           <div>
               <h1> Eat Fresh and Local </h1>
-              <h3>Find what fruits and vegetables in season near you</h3>
+              <h3>Find what fruits and vegetables in season near you!</h3>
+
+              <div>{inSeasonList}</div>
           </div>
       )
   }

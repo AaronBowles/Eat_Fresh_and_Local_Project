@@ -12,7 +12,7 @@ class App extends Component {
       region: "",
       season: "",
       produce:"",
-      produceInSeason: []
+      produceInSeason: null
     };
   }
 
@@ -27,7 +27,7 @@ class App extends Component {
  componentDidUpdate(prevProps, prevState){
   console.log(prevState)
   if(prevState.region !== this.state.region || prevState.season !==  this.state.season){
-     this.setState({produceInSeason: []})
+     this.setState({produceInSeason: null})
     if(this.state.region !== "" && this.state.season !== ""){
       let inSeason =[];
       for(let i=0; i < this.state.produce.length; i++){
@@ -39,7 +39,9 @@ class App extends Component {
               }
           }
       }
+      if(inSeason.length > 0){
       this.setState({produceInSeason: inSeason})
+      }
     }
   }
  }
