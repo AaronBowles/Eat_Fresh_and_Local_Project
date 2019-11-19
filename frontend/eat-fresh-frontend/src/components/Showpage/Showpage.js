@@ -6,11 +6,20 @@ class ShowPage extends Component {
   }
     
   render() {
+      let showMarkets = this.props.localMarkets.map(item => {
+          return (
+              <div>
+                  <h4>{item.marketname}</h4>
+              </div>
+          )
+      })
       return (
           <div>
-              <h1>ShowPage</h1>
+              <h2>Markets Near You!</h2>
+
+              <div>{showMarkets}</div>
           </div>
       )
   }
 }
-export default ShowPage
+export default ShowPage;

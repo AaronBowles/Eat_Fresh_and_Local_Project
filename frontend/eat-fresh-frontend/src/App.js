@@ -13,7 +13,7 @@ class App extends Component {
       season: "",
       produce:"",
       produceInSeason: null,
-      localMarkets: "",
+      localMarkets: [{"id": "Error"}],
       zip: ""
     };
   }
@@ -28,6 +28,7 @@ class App extends Component {
 
  componentDidUpdate(prevProps, prevState){
   console.log(prevState)
+  console.log(this.state)
   if(prevState.region !== this.state.region || prevState.season !==  this.state.season){
      this.setState({produceInSeason: null})
     if(this.state.region !== "" && this.state.season !== ""){
@@ -45,6 +46,10 @@ class App extends Component {
       this.setState({produceInSeason: inSeason})
       }
     }
+  }
+
+  if(this.state.localMarkets[0].id === "Error"){
+    console.log('hello')
   }
  }
 
@@ -97,7 +102,7 @@ class App extends Component {
 
         <main>
           <Switch>
-            <Route path="/" 
+            <Route exact path="/" 
             //component={Home}
             render={props => (
               <Home
@@ -108,7 +113,14 @@ class App extends Component {
                 />
             )}
             />
-            <Route path="/show" component={ShowPage} />
+            <Route path="/show" 
+            //component={ShowPage} 
+            render={props => (
+              <ShowPage
+              localMarkets={this.state.localMarkets}
+              />
+            )}
+            />
           </Switch>
         </main>
         <div>
