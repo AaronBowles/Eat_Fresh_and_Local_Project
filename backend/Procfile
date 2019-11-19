@@ -1,0 +1,1 @@
+web: gunicorn EatFresh_django.wsgi --log-file -
