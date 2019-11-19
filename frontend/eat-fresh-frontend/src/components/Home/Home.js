@@ -8,19 +8,16 @@ class Home extends Component {
   
   
   render() {
-      if(this.props.region !== "" && this.props.state !== ""){
-   // let objkeys = this.props.produce[0].seasonAndRegion[this.props.season];
-     //console.log(objkeys)
-    for(let i=0; i < this.props.produce.length; i++){
-        for(let j=0; j < this.props.produce[i].seasonAndRegion[this.props.season].length; j++){
+    if(this.props.region !== "" && this.props.season !== ""){
+        for(let i=0; i < this.props.produce.length; i++){
+            for(let j=0; j < this.props.produce[i].seasonAndRegion[this.props.season].length; j++){
             //console.log(this.props.produce[i].seasonAndRegion[this.props.season])
-            if(this.props.produce[i].seasonAndRegion[this.props.season][j] === this.props.region){
-                console.log(this.props.produce[i].name)
+                if(this.props.produce[i].seasonAndRegion[this.props.season][j] === this.props.region){
+                    this.props.produceInSeason.push(this.props.produce[i])
+                }
             }
         }
     }
-
-      }
     
       return (
           <div>

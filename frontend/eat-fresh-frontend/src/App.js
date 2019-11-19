@@ -27,8 +27,12 @@ class App extends Component {
  setRegion = event => {
    //console.log(event.target.innerHTML);
    this.setState({region: event.target.name})
+ 
  }
 
+//  regionChange = event => {
+//    this.setState({produceInSeason: []})
+//  }
  setSeason = event => {
    this.setState({season: event.target.innerHTML})
  }
