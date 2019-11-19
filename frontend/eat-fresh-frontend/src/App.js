@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch, Redirect } from 'react-router-dom';
+import { Link, Route, Switch} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Home from "./components/Home/Home";
 import ShowPage from "./components/ShowPage/ShowPage";
 import Axios from 'axios';
+import { throwStatement } from '@babel/types';
 
 
 
@@ -19,7 +20,9 @@ class App extends Component {
       produceInSeason: null,
       localMarkets: [{"id": "Error"}],
       zip: "",
-      markets: ""
+      marketDetails:null,
+      marketProducts:null
+      
     };
   }
   
@@ -32,8 +35,7 @@ class App extends Component {
   };
   
   componentDidUpdate(prevProps, prevState){
-    console.log(prevState)
-    console.log(this.state)
+   
     if(prevState.region !== this.state.region || prevState.season !==  this.state.season){
       this.setState({produceInSeason: null})
       if(this.state.region !== "" && this.state.season !== ""){
@@ -53,20 +55,13 @@ class App extends Component {
       }
     }
     
+    if(this.state.marketDetails !== null){
 
-  //   if(this.state.localMarkets[0].id !== "Error"){
-  //    let showMarkets = this.state.localMarkets.map(item => {
-  //      return (
-  //          <div>
-  //              <h4>{item.marketname}</h4>
-  //          </div>
-  //      )
-  //  })
-  //  this.setState({markets: showMarkets})
-  //  }
+     this.showMarketModal();
+    }
+ 
   }
-    
-    
+
   setRegion = event => {
       //console.log(event.target.innerHTML);
    this.setState({region: event.target.name})
@@ -90,18 +85,47 @@ class App extends Component {
      this.setState({localMarkets: res.data.results})
    })
    
- }
+  }
+
+  hideMarket = () => {
+    this.setState({localMarkets: [{"id": "Error"}]})
+    document.getElementsByClassName("zipInput")[0].value = ""
+  }
+
+  getMarketDetail = event=> {
+    console.log(event.target.innerHTML)
+    let market = this.state.localMarkets.find( 
+      name => name.marketname === event.target.innerHTML) 
+      console.log(market)
+    Axios.get("http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + market.id)
+    .then(res => {
+      console.log(res.data.marketdetails)
+      this.setState({marketDetails: res.data.marketdetails})
+     
+    })
+  }
+
+  showMarketModal = () => {
+    let marketModal = document.getElementsByClassName("marketModal");
+    marketModal[0].style.display = "block";
+  }
+
+  closeMarketModal = event => {
+    let marketModal = document.getElementsByClassName("marketModal");
+    marketModal[0].style.display = "none";
+  }
+
 
   render() {
-    let showMarkets = null
+    let marketsList = null
     if(this.state.localMarkets[0].id !== "Error"){
-        showMarkets = this.state.localMarkets.map(item => {
+      marketsList = this.state.localMarkets.map(item => {
         return (
-            <div>
-                <h4>{item.marketname}</h4>
+          <div>
+                <h4 className="markets" onClick={this.getMarketDetail}>{item.marketname}</h4>
             </div>
         )
-    })
+      })
     }
 
     return (
@@ -151,11 +175,14 @@ class App extends Component {
         </main>
         <div>
           <h3>Find a farmer's market near you?</h3>
-          <input onChange={this.setZip} type="text" placeholder="enter a zipcode"/> <button onClick={this.findMarket}>enter</button>
+          <input className="zipInput" onChange={this.setZip} type="text" placeholder="enter a zipcode"/>
+          <button onClick={this.findMarket}>Enter</button>
+          <button onClick={this.hideMarket}>Hide Markets</button>
 
           {this.state.localMarkets[0].id !== "Error" ? (
           <div>
-            <h3>{showMarkets}</h3>
+            <h3></h3>
+            <h4>{marketsList}</h4>
           </div>
 
           ):(
@@ -163,6 +190,23 @@ class App extends Component {
               
             </div>
           )}
+        </div>
+
+        <div className="marketModal">
+          <div className="marketModal-container">
+            {this.state.marketDetails !== null ? (
+              <div>
+                <h3> Address: {this.state.marketDetails.Address} </h3>
+                <h3> Schedule: {this.state.marketDetails.Schedule.split(";").shift()}</h3>
+                <h3> Products: {this.state.marketDetails.Products}</h3>
+                <h3> Link: <a href={this.state.marketDetails.GoogleLink}>learn more</a></h3>
+                <button onClick={this.closeMarketModal}>exit </button>
+              </div>
+            ):(
+              <div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     )
