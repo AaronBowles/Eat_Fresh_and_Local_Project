@@ -51,7 +51,7 @@ class Home extends Component {
       return (
           <div>
               <h1> Eat Fresh and Local </h1>
-              <h3>Find what fruits and vegetables in season near you!</h3>
+              <h3> Find what fruits and vegetables in season near you! </h3>
 
               <div>{inSeasonList}</div>
           </div>
