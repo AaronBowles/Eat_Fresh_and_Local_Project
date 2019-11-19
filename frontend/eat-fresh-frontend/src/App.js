@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link, Route, Switch} from 'react-router-dom';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import Home from "./components/Home/Home";
-import ShowPage from "./components/ShowPage/ShowPage";
+//import ShowPage from "./components/ShowPage/ShowPage";
 import Axios from 'axios';
-import { throwStatement } from '@babel/types';
+//import { throwStatement } from '@babel/types';
 
 
 
@@ -27,7 +27,7 @@ class App extends Component {
   }
   
   componentDidMount() {
-    Axios.get('http://localhost:8000/produces')
+    Axios.get('https://eatfreshandlocalapp.herokuapp.com/produces')
     .then(res => {
       console.log(res.data);
       this.setState({produce: res.data});
@@ -163,14 +163,14 @@ class App extends Component {
                 />
             )}
             />
-            <Route path="/show" 
+            {/* <Route path="/show" 
             //component={ShowPage} 
             render={props => (
               <ShowPage
               localMarkets={this.state.localMarkets}
               />
             )}
-            />
+            /> */}
           </Switch>
         </main>
         <div>
