@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       region: "",
       season: "",
-      produce:""
+      produce:"",
+      produceInSeason: []
     };
   }
 
@@ -23,15 +24,51 @@ class App extends Component {
    });
  };
 
+ setRegion = event => {
+   //console.log(event.target.innerHTML);
+   this.setState({region: event.target.name})
+ }
+
+ setSeason = event => {
+   this.setState({season: event.target.innerHTML})
+ }
+
   render() {
     return (
       <div>
         <nav>
           <Link to="/">Home</Link>
         </nav>
+        <div>
+
+          <button onClick={this.setRegion} name="NW">Northwest</button>
+          <button onClick={this.setRegion} name="NE">Northeast</button>
+          <button onClick={this.setRegion} name="MW">Midwest</button>
+          <button onClick={this.setRegion} name="SW">Southwest</button>
+          <button onClick={this.setRegion} name="SE">Southeast</button>
+        </div>
+        <div>
+
+          <button onClick={this.setSeason}>Spring</button>
+          <button onClick={this.setSeason}>Summer</button>
+          <button onClick={this.setSeason}>Fall</button>
+          <button onClick={this.setSeason}>Winter</button>
+        </div>
+
+
         <main>
           <Switch>
-            <Route path="/" component={Home} />
+            <Route path="/" 
+            //component={Home}
+            render={props => (
+              <Home
+                region={this.state.region}
+                season={this.state.season}
+                produce={this.state.produce}
+                produceInSeason={this.state.produceInSeason}
+                />
+            )}
+            />
             <Route path="/show" component={ShowPage} />
           </Switch>
         </main>
