@@ -6,8 +6,8 @@ import Home from "./components/Home/Home";
 import ShowPage from "./components/ShowPage/ShowPage";
 import Axios from 'axios';
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor(state) {
+    super(state);
     this.state = {
       region: "",
       season: "",
@@ -23,6 +23,27 @@ class App extends Component {
     this.setState({produce: res.data});
    });
  };
+
+ componentDidUpdate(prevProps, prevState){
+  console.log(prevState)
+  if(prevState.region !== this.state.region || prevState.season !==  this.state.season){
+     this.setState({produceInSeason: []})
+    if(this.state.region !== "" && this.state.season !== ""){
+      let inSeason =[];
+      for(let i=0; i < this.state.produce.length; i++){
+          for(let j=0; j < this.state.produce[i].seasonAndRegion[this.state.season].length; j++){
+          //console.log(this.state.produce[i].seasonAndRegion[this.state.season])
+              if(this.state.produce[i].seasonAndRegion[this.state.season][j] === this.state.region){
+                inSeason.push(this.state.produce[i])
+                console.log(inSeason)
+              }
+          }
+      }
+      this.setState({produceInSeason: inSeason})
+    }
+  }
+ }
+
 
  setRegion = event => {
    //console.log(event.target.innerHTML);

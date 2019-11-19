@@ -5,19 +5,34 @@ class Home extends Component {
     super(props);
   }
 
-  
+//   componentDidUpdate(prevProps){
+//     console.log(prevProps)
+//     if(prevProps.region !== this.props.region || prevProps.season !==  this.props.season){
+//        // this.props.produceInSeason = [];
+//       if(this.props.region !== "" && this.props.season !== ""){
+//         for(let i=0; i < this.props.produce.length; i++){
+//             for(let j=0; j < this.props.produce[i].seasonAndRegion[this.props.season].length; j++){
+//             //console.log(this.props.produce[i].seasonAndRegion[this.props.season])
+//                 if(this.props.produce[i].seasonAndRegion[this.props.season][j] === this.props.region){
+//                     this.props.produceInSeason.push(this.props.produce[i])
+//                 }
+//             }
+//         }
+//     }
+//   }
+// }
   
   render() {
-    if(this.props.region !== "" && this.props.season !== ""){
-        for(let i=0; i < this.props.produce.length; i++){
-            for(let j=0; j < this.props.produce[i].seasonAndRegion[this.props.season].length; j++){
-            //console.log(this.props.produce[i].seasonAndRegion[this.props.season])
-                if(this.props.produce[i].seasonAndRegion[this.props.season][j] === this.props.region){
-                    this.props.produceInSeason.push(this.props.produce[i])
-                }
-            }
-        }
-    }
+    // if(this.props.region !== "" && this.props.season !== ""){
+    //     for(let i=0; i < this.props.produce.length; i++){
+    //         for(let j=0; j < this.props.produce[i].seasonAndRegion[this.props.season].length; j++){
+    //         //console.log(this.props.produce[i].seasonAndRegion[this.props.season])
+    //             if(this.props.produce[i].seasonAndRegion[this.props.season][j] === this.props.region){
+    //                 this.props.produceInSeason.push(this.props.produce[i])
+    //             }
+    //         }
+    //     }
+    // }
     
       return (
           <div>
