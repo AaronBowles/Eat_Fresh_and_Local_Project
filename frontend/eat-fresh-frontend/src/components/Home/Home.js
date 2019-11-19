@@ -5,23 +5,7 @@ class Home extends Component {
     super(props);
   }
 
-//   componentDidUpdate(prevProps){
-//     console.log(prevProps)
-//     if(prevProps.region !== this.props.region || prevProps.season !==  this.props.season){
-//        // this.props.produceInSeason = [];
-//       if(this.props.region !== "" && this.props.season !== ""){
-//         for(let i=0; i < this.props.produce.length; i++){
-//             for(let j=0; j < this.props.produce[i].seasonAndRegion[this.props.season].length; j++){
-//             //console.log(this.props.produce[i].seasonAndRegion[this.props.season])
-//                 if(this.props.produce[i].seasonAndRegion[this.props.season][j] === this.props.region){
-//                     this.props.produceInSeason.push(this.props.produce[i])
-//                 }
-//             }
-//         }
-//     }
-//   }
-// }
-  
+
   render() {
     // if(this.props.region !== "" && this.props.season !== ""){
     //     for(let i=0; i < this.props.produce.length; i++){
@@ -51,9 +35,11 @@ class Home extends Component {
       return (
           <div>
               <h1> Eat Fresh and Local </h1>
-              <h3> Find what fruits and vegetables in season near you! </h3>
+              <h3> Find what fruits and vegetables are in season near you! </h3>
 
               <div>{inSeasonList}</div>
+
+              
           </div>
       )
   }

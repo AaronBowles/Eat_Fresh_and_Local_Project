@@ -12,7 +12,9 @@ class App extends Component {
       region: "",
       season: "",
       produce:"",
-      produceInSeason: null
+      produceInSeason: null,
+      localMarkets: "",
+      zip: ""
     };
   }
 
@@ -46,18 +48,28 @@ class App extends Component {
   }
  }
 
-
  setRegion = event => {
    //console.log(event.target.innerHTML);
    this.setState({region: event.target.name})
  
  }
 
-//  regionChange = event => {
-//    this.setState({produceInSeason: []})
-//  }
  setSeason = event => {
    this.setState({season: event.target.innerHTML})
+ }
+
+ setZip = event => {
+   console.log(event.target.value)
+   this.setState({zip: event.target.value})
+
+ }
+
+ findMarket = () => {
+   Axios.get("http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip="+ this.state.zip)
+   .then(res => {
+     console.log(res.data.results)
+     this.setState({localMarkets: res.data.results})
+   })
  }
 
   render() {
@@ -99,6 +111,10 @@ class App extends Component {
             <Route path="/show" component={ShowPage} />
           </Switch>
         </main>
+        <div>
+          <h3>Find a farmer's market near you!</h3>
+          <input onChange={this.setZip} type="text" placeholder="enter a zipcode"/> <button onClick={this.findMarket}>enter</button>
+        </div>
       </div>
     )
   }
