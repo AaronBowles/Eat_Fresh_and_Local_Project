@@ -19,10 +19,11 @@ class App extends Component {
       season: "",
       produce:"",
       produceInSeason: null,
-      localMarkets: [{"id": "Error"}],
-      zip: "",
-      marketDetails:null,
-      marketProducts:null
+      path:"/"
+      // localMarkets: [{"id": "Error"}],
+      // zip: "",
+      // marketDetails:null,
+      // marketProducts:null
       
     };
   }
@@ -66,11 +67,18 @@ class App extends Component {
   setRegion = event => {
       //console.log(event.target.innerHTML);
    this.setState({region: event.target.name})
- 
   }
 
   setSeason = event => {
    this.setState({season: event.target.innerHTML})
+  }
+
+  marketPath = () => {
+    this.setState({path: "/market"})
+  }
+
+  homePath = () => {
+    this.setState({path: "/" })
   }
 
   // setZip = event => {
@@ -118,22 +126,25 @@ class App extends Component {
 
 
   render() {
-    let marketsList = null
-    if(this.state.localMarkets[0].id !== "Error"){
-      marketsList = this.state.localMarkets.map(item => {
-        return (
-          <div>
-                <h4 className="markets" onClick={this.getMarketDetail}>{item.marketname}</h4>
-            </div>
-        )
-      })
-    }
+    // let marketsList = null
+    // if(this.state.localMarkets[0].id !== "Error"){
+    //   marketsList = this.state.localMarkets.map(item => {
+    //     return (
+    //       <div>
+    //             <h4 className="markets" onClick={this.getMarketDetail}>{item.marketname}</h4>
+    //         </div>
+    //     )
+    //   })
+    // }
 
     return (
       <div>
         <nav>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={this.homePath}>Home </Link>
+          <Link to ="/market" onClick={this.marketPath}> Find a Market Near You </Link>
         </nav>
+        {this.state.path === "/" ? (
+          <div>
         <div>
 
           <button onClick={this.setRegion} name="NW">Northwest</button>
@@ -149,6 +160,13 @@ class App extends Component {
           <button onClick={this.setSeason}>Fall</button>
           <button onClick={this.setSeason}>Winter</button>
         </div>
+        </div>
+        ) : (
+          <div>
+            </div>
+        )
+      }
+ 
 
 
         <main>
@@ -172,18 +190,12 @@ class App extends Component {
               />
             )}
             /> */}
-            <Route path="/market"
-              render={props => (
-                <Market 
-                
-                />
-              )}
-              />
+            <Route path="/market" component= {Market}/>
           </Switch>
         </main>
         <div>
-          {/* <Link to ="/market"> <button>Find a Market Near You</button></Link>
-          <h3>Find a farmer's market near you?</h3>
+      
+         {/*<h3>Find a farmer's market near you?</h3>
           <input className="zipInput" onChange={this.setZip} type="text" placeholder="enter a zipcode"/>
           <button onClick={this.findMarket}>Enter</button>
           <button onClick={this.hideMarket}>Hide Markets</button>
@@ -201,7 +213,7 @@ class App extends Component {
           )} */}
         </div>
 
-        <div className="marketModal">
+        {/* <div className="marketModal">
           <div className="marketModal-container">
             {this.state.marketDetails !== null ? (
               <div>
@@ -216,7 +228,7 @@ class App extends Component {
               </div>
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     )
   }

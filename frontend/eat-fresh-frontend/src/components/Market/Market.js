@@ -10,7 +10,8 @@ class Market extends Component {
         localMarkets: [{"id": "Error"}],
         zip: "",
         marketDetails:null,
-        marketProducts:null
+        marketProducts:null,
+
     }
 
 }
@@ -31,6 +32,7 @@ class Market extends Component {
        hideMarket = () => {
         this.setState({localMarkets: [{"id": "Error"}]})
         document.getElementsByClassName("zipInput")[0].value = ""
+        this.setState({zip: ""})
       }
 
       getMarketDetail = event=> {
@@ -54,9 +56,10 @@ class Market extends Component {
       closeMarketModal = event => {
         let marketModal = document.getElementsByClassName("marketModal");
         marketModal[0].style.display = "none";
+        
       }
       componentDidUpdate(){
-          if(this.state.marketDetails !== null){
+          if(this.state.marketDetails !== null && this.state.localMarkets[0].id !== "Error"){
               this.showMarketModal();
           }
       }
@@ -76,7 +79,8 @@ class Market extends Component {
     <div>
 
     <div>
-        <h3>Find a farmer's market near you?</h3>
+        <h2>Find a farmer's market near you? </h2>
+        <h3>Just enter a zipcode below!</h3>
         <input className="zipInput" onChange={this.setZip} type="text" placeholder="enter a zipcode"/>
         <button onClick={this.findMarket}>Enter</button>
         <button onClick={this.hideMarket}>Hide Markets</button>

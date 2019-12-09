@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
+
 class Home extends Component {
 //   constructor(props) {
 //     super(props);
@@ -17,6 +17,7 @@ class Home extends Component {
     //         }
     //     }
     // }
+  
     let inSeasonList = null;
     if(this.props.produceInSeason !== null){
          inSeasonList = this.props.produceInSeason.map(item => {
