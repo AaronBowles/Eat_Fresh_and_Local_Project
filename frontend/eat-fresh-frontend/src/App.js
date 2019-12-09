@@ -3,6 +3,7 @@ import { Link, Route, Switch} from 'react-router-dom';
 //import logo from './logo.svg';
 import './App.css';
 import Home from "./components/Home/Home";
+import Market from "./components/Market/Market";
 //import ShowPage from "./components/ShowPage/ShowPage";
 import Axios from 'axios';
 //import { throwStatement } from '@babel/types';
@@ -55,10 +56,10 @@ class App extends Component {
       }
     }
     
-    if(this.state.marketDetails !== null){
+    // if(this.state.marketDetails !== null){
 
-     this.showMarketModal();
-    }
+    //  this.showMarketModal();
+    // }
  
   }
 
@@ -72,48 +73,48 @@ class App extends Component {
    this.setState({season: event.target.innerHTML})
   }
 
-  setZip = event => {
-   console.log(event.target.value)
-   this.setState({zip: event.target.value})
+  // setZip = event => {
+  //  console.log(event.target.value)
+  //  this.setState({zip: event.target.value})
 
-  }
+  // }
 
-  findMarket = () => {
-   Axios.get("http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip="+ this.state.zip)
-   .then(res => {
-     console.log(res.data.results)
-     this.setState({localMarkets: res.data.results})
-   })
+  // findMarket = () => {
+  //  Axios.get("https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip="+ this.state.zip)
+  //  .then(res => {
+  //    console.log(res.data.results)
+  //    this.setState({localMarkets: res.data.results})
+  //  })
    
-  }
+  // }
 
-  hideMarket = () => {
-    this.setState({localMarkets: [{"id": "Error"}]})
-    document.getElementsByClassName("zipInput")[0].value = ""
-  }
+  // hideMarket = () => {
+  //   this.setState({localMarkets: [{"id": "Error"}]})
+  //   document.getElementsByClassName("zipInput")[0].value = ""
+  // }
 
-  getMarketDetail = event=> {
-    console.log(event.target.innerHTML)
-    let market = this.state.localMarkets.find( 
-      name => name.marketname === event.target.innerHTML) 
-      console.log(market)
-    Axios.get("http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + market.id)
-    .then(res => {
-      console.log(res.data.marketdetails)
-      this.setState({marketDetails: res.data.marketdetails})
+  // getMarketDetail = event=> {
+  //   console.log(event.target.innerHTML)
+  //   let market = this.state.localMarkets.find( 
+  //     name => name.marketname === event.target.innerHTML) 
+  //     console.log(market)
+  //   Axios.get("http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + market.id)
+  //   .then(res => {
+  //     console.log(res.data.marketdetails)
+  //     this.setState({marketDetails: res.data.marketdetails})
      
-    })
-  }
+  //   })
+  // }
 
-  showMarketModal = () => {
-    let marketModal = document.getElementsByClassName("marketModal");
-    marketModal[0].style.display = "block";
-  }
+  // showMarketModal = () => {
+  //   let marketModal = document.getElementsByClassName("marketModal");
+  //   marketModal[0].style.display = "block";
+  // }
 
-  closeMarketModal = event => {
-    let marketModal = document.getElementsByClassName("marketModal");
-    marketModal[0].style.display = "none";
-  }
+  // closeMarketModal = event => {
+  //   let marketModal = document.getElementsByClassName("marketModal");
+  //   marketModal[0].style.display = "none";
+  // }
 
 
   render() {
@@ -171,9 +172,17 @@ class App extends Component {
               />
             )}
             /> */}
+            <Route path="/market"
+              render={props => (
+                <Market 
+                
+                />
+              )}
+              />
           </Switch>
         </main>
         <div>
+          {/* <Link to ="/market"> <button>Find a Market Near You</button></Link>
           <h3>Find a farmer's market near you?</h3>
           <input className="zipInput" onChange={this.setZip} type="text" placeholder="enter a zipcode"/>
           <button onClick={this.findMarket}>Enter</button>
@@ -189,7 +198,7 @@ class App extends Component {
             <div>
               
             </div>
-          )}
+          )} */}
         </div>
 
         <div className="marketModal">
