@@ -144,22 +144,22 @@ class App extends Component {
           <Link to ="/market" onClick={this.marketPath}> Find a Market Near You </Link>
         </nav>
         {this.state.path === "/" ? (
+        <div>
           <div>
-        <div>
 
-          <button onClick={this.setRegion} name="NW">Northwest</button>
-          <button onClick={this.setRegion} name="NE">Northeast</button>
-          <button onClick={this.setRegion} name="MW">Midwest</button>
-          <button onClick={this.setRegion} name="SW">Southwest</button>
-          <button onClick={this.setRegion} name="SE">Southeast</button>
-        </div>
-        <div>
+            <button onClick={this.setRegion} name="NW">Northwest</button>
+            <button onClick={this.setRegion} name="NE">Northeast</button>
+            <button onClick={this.setRegion} name="MW">Midwest</button>
+            <button onClick={this.setRegion} name="SW">Southwest</button>
+            <button onClick={this.setRegion} name="SE">Southeast</button>
+          </div>
+          <div>
 
-          <button onClick={this.setSeason}>Spring</button>
-          <button onClick={this.setSeason}>Summer</button>
-          <button onClick={this.setSeason}>Fall</button>
-          <button onClick={this.setSeason}>Winter</button>
-        </div>
+            <button onClick={this.setSeason}>Spring</button>
+            <button onClick={this.setSeason}>Summer</button>
+            <button onClick={this.setSeason}>Fall</button>
+            <button onClick={this.setSeason}>Winter</button>
+          </div>
         </div>
         ) : (
           <div>

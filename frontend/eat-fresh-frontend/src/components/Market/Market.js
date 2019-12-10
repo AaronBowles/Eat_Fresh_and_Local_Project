@@ -11,10 +11,11 @@ class Market extends Component {
         zip: "",
         marketDetails:null,
         marketProducts:null,
-
+        
     }
 
 }
+    
     setZip = event => {
        console.log(event.target.value)
         this.setState({zip: event.target.value})
@@ -27,15 +28,15 @@ class Market extends Component {
           this.setState({localMarkets: res.data.results})
         })
         
-       }
+    }
     
-       hideMarket = () => {
+    hideMarket = () => {
         this.setState({localMarkets: [{"id": "Error"}]})
         document.getElementsByClassName("zipInput")[0].value = ""
         this.setState({zip: ""})
-      }
+    }
 
-      getMarketDetail = event=> {
+    getMarketDetail = event=> {
         console.log(event.target.innerHTML)
         let market = this.state.localMarkets.find( 
           name => name.marketname === event.target.innerHTML) 
@@ -46,23 +47,24 @@ class Market extends Component {
           this.setState({marketDetails: res.data.marketdetails})
          
         })
-      }
+    }
 
-      showMarketModal = () => {
+    showMarketModal = () => {
         let marketModal = document.getElementsByClassName("marketModal");
         marketModal[0].style.display = "block";
-      }
+    }
     
-      closeMarketModal = event => {
+    closeMarketModal = event => {
         let marketModal = document.getElementsByClassName("marketModal");
         marketModal[0].style.display = "none";
         
-      }
-      componentDidUpdate(){
-          if(this.state.marketDetails !== null && this.state.localMarkets[0].id !== "Error"){
-              this.showMarketModal();
-          }
-      }
+    }
+    
+    componentDidUpdate(){
+        if(this.state.marketDetails !== null && this.state.localMarkets[0].id !== "Error"){
+            this.showMarketModal();
+        }
+    }
 
   render() {
     let marketsList = null
@@ -78,7 +80,7 @@ class Market extends Component {
     return (
     <div>
 
-    <div>
+      <div>
         <h2>Find a farmer's market near you? </h2>
         <h3>Just enter a zipcode below!</h3>
         <input className="zipInput" onChange={this.setZip} type="text" placeholder="enter a zipcode"/>
@@ -96,7 +98,7 @@ class Market extends Component {
             
           </div>
         )}
-    </div>
+      </div>
 
       <div className="marketModal">
         <div className="marketModal-container">
