@@ -1,0 +1,10 @@
+.produceButton {
+    height: 50px;
+    width: 150px;
+    border: 5px solid black;
+    border-radius: 15%;
+    margin-bottom: 10px;
+    background-color: red;
+    font-size: 25px;
+    font-weight: bold;
+}

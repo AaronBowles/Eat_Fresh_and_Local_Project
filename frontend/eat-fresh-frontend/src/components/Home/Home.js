@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./Home.css"
 class Home extends Component {
 //   constructor(props) {
 //     super(props);
@@ -23,7 +23,7 @@ class Home extends Component {
          inSeasonList = this.props.produceInSeason.map(item => {
             console.log(item)
             return (
-                <div className="produceList">
+                <div className="produceDetail">
                     <h3>Name: {item.name}</h3>
                     <h4>Category: {item.category}</h4>
                     <h4>Description:</h4><p>{item.description}</p>
@@ -32,13 +32,30 @@ class Home extends Component {
         })
     }
     
+    let produceList = null;
+    if(this.props.produceInSeason !== null){
+        produceList = this.props.produceInSeason.map(item => {
+            return (
+                <div className="produceName">
+                    <button className="produceButton">{item.name}</button>
+                </div>
+            )
+        })
+    }
     
       return (
           <div>
               {/* <h1> Eat Fresh and Local </h1>
               <h3> Find what fruits and vegetables are in season near you! </h3> */}
-              <h3> Produce In Season :</h3>
-              <div>{inSeasonList}</div>
+              <div className="currentParams">
+                <h3>Current Region: {this.props.region}</h3>
+                <h3>Current Season: {this.props.season}</h3>
+              </div>
+              <h2> Produce In Season:</h2>
+              <div className ="produce">
+                {produceList}
+              </div>
+              {/* <div>{inSeasonList}</div> */}
 
               
           </div>
