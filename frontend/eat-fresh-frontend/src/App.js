@@ -139,13 +139,20 @@ class App extends Component {
 
     return (
       <div>
-        <nav>
-          <Link to="/" onClick={this.homePath}>Home </Link>
-          <Link to ="/market" onClick={this.marketPath}> Find a Market Near You </Link>
-        </nav>
+        <header>
+          <h1 className="title"> Eat Fresh and Local </h1>
+          <nav>
+            <Link to="/" onClick={this.homePath}>Home </Link>
+            <Link to ="/market" onClick={this.marketPath}> Find a Market Near You </Link>
+          </nav>
+        </header>
+
+        <div>
+          <h3> Select your region and season of interest and see what is in season! </h3>
+        </div>
         {this.state.path === "/" ? (
         <div>
-          <div>
+          <div className="region">
 
             <button onClick={this.setRegion} name="NW">Northwest</button>
             <button onClick={this.setRegion} name="NE">Northeast</button>
@@ -153,8 +160,7 @@ class App extends Component {
             <button onClick={this.setRegion} name="SW">Southwest</button>
             <button onClick={this.setRegion} name="SE">Southeast</button>
           </div>
-          <div>
-
+          <div className="season">
             <button onClick={this.setSeason}>Spring</button>
             <button onClick={this.setSeason}>Summer</button>
             <button onClick={this.setSeason}>Fall</button>
