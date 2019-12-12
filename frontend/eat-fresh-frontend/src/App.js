@@ -154,17 +154,17 @@ class App extends Component {
         <div>
           <div className="region">
 
-            <button onClick={this.setRegion} name="NW">Northwest</button>
-            <button onClick={this.setRegion} name="NE">Northeast</button>
-            <button onClick={this.setRegion} name="MW">Midwest</button>
-            <button onClick={this.setRegion} name="SW">Southwest</button>
-            <button onClick={this.setRegion} name="SE">Southeast</button>
+            <button className="regionButton" onClick={this.setRegion} name="NW">Northwest</button>
+            <button className="regionButton" onClick={this.setRegion} name="NE">Northeast</button>
+            <button className="regionButton" onClick={this.setRegion} name="MW">Midwest</button>
+            <button className="regionButton" onClick={this.setRegion} name="SW">Southwest</button>
+            <button className="regionButton" onClick={this.setRegion} name="SE">Southeast</button>
           </div>
           <div className="season">
-            <button onClick={this.setSeason}>Spring</button>
-            <button onClick={this.setSeason}>Summer</button>
-            <button onClick={this.setSeason}>Fall</button>
-            <button onClick={this.setSeason}>Winter</button>
+            <button className="seasonButton" onClick={this.setSeason}>Spring</button>
+            <button className="seasonButton" onClick={this.setSeason}>Summer</button>
+            <button className="seasonButton" onClick={this.setSeason}>Fall</button>
+            <button className="seasonButton" onClick={this.setSeason}>Winter</button>
           </div>
         </div>
         ) : (

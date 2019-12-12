@@ -36,7 +36,7 @@ class Home extends Component {
     if(this.props.produceInSeason !== null){
         produceList = this.props.produceInSeason.map(item => {
             return (
-                <div className="produceName">
+                <div className="produceNames">
                     <button className="produceButton">{item.name}</button>
                 </div>
             )
