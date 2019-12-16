@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from 'axios';
 import "./Market.css";
-
+import {Redirect} from "react-router-dom";
 
 class Market extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Market extends Component {
     }
 
 }
-    
+
     setZip = event => {
        console.log(event.target.value)
         this.setState({zip: event.target.value})
@@ -41,12 +41,14 @@ class Market extends Component {
         let market = this.state.localMarkets.find( 
           name => name.marketname === event.target.innerHTML) 
           console.log(market)
+          this.setState({marketProducts: market})
         Axios.get("http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + market.id)
         .then(res => {
           console.log(res.data.marketdetails)
           this.setState({marketDetails: res.data.marketdetails})
          
         })
+        
     }
 
     showMarketModal = () => {
@@ -65,8 +67,10 @@ class Market extends Component {
             this.showMarketModal();
         }
     }
+    render() {
+      if (this.props.path !== "/market") return <Redirect to="/"/>
 
-  render() {
+    
     let marketsList = null
     if(this.state.localMarkets[0].id !== "Error"){
       marketsList = this.state.localMarkets.map(item => {
@@ -78,7 +82,8 @@ class Market extends Component {
       })
     }
     return (
-    <div>
+      
+    <div className="marketDisplay">
 
       <div>
         <h2>Find a farmer's market near you? </h2>
@@ -104,6 +109,7 @@ class Market extends Component {
         <div className="marketModal-container">
           {this.state.marketDetails !== null ? (
             <div>
+              <h2> {this.state.marketProducts.marketname}</h2>
               <h3> Address: {this.state.marketDetails.Address} </h3>
               <h3> Schedule: {this.state.marketDetails.Schedule.split(";").shift()}</h3>
               <h3> Products: {this.state.marketDetails.Products}</h3>

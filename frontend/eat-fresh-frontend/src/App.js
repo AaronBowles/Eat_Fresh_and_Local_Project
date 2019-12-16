@@ -11,6 +11,7 @@ import Axios from 'axios';
 
 
 
+
 class App extends Component {
   constructor(state) {
     super(state);
@@ -140,18 +141,25 @@ class App extends Component {
     return (
       <div>
         <header>
-          <h1 className="title"> Eat Fresh and Local </h1>
-          <nav>
-            <Link to="/" onClick={this.homePath}>Home </Link>
-            <Link to ="/market" onClick={this.marketPath}> Find a Market Near You </Link>
+          <div className="headerDiv">
+            <div className="imgCrop">
+              <img className="headerImage" src={"/images/vegetableBackground.png"}/>
+            </div>
+        
+              <h1 className="title"> Eat Fresh and Local </h1>
+    
+          <nav className="navBar">
+            <Link className="homeLink" to="/" onClick={this.homePath}>Home </Link>
+            <Link className="marketLink" to ="/market" onClick={this.marketPath}> Find a Market Near You </Link>
           </nav>
+          </div>
         </header>
 
-        <div>
+        {this.state.path === "/" ? (
+        <div className="seasonAndRegion">
+        <div className="paramHeader">
           <h3> Select your region and season of interest and see what is in season! </h3>
         </div>
-        {this.state.path === "/" ? (
-        <div>
           <div className="region">
 
             <button className="regionButton" onClick={this.setRegion} name="NW">Northwest</button>
@@ -175,7 +183,7 @@ class App extends Component {
  
 
 
-        <main>
+        <main className="main">
           <Switch>
             <Route exact path="/" 
             //component={Home}
@@ -196,7 +204,13 @@ class App extends Component {
               />
             )}
             /> */}
-            <Route path="/market" component= {Market}/>
+            <Route path="/market" render={props => (
+              <Market
+              path={this.state.path}
+              
+              />
+            )}
+            />
           </Switch>
         </main>
         <div>
