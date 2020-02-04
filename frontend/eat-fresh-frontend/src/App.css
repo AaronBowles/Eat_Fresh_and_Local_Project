@@ -188,4 +188,7 @@ nav{
 	line-height: 120%;
   font-family: Arial, Helvetica, sans-serif;
 }
+body {
+  background-color: rgb(140, 218, 118);
+}
 
